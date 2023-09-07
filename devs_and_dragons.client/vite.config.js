@@ -8,6 +8,8 @@ export default defineConfig({
     outDir: '../devs_and_dragons/client',
     sourcemap: false
   },
+  base: '',
+
   server: {
     port: 8080
   }
