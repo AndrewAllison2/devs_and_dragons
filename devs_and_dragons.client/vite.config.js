@@ -5,9 +5,10 @@ import { defineConfig } from 'vite'
 export default defineConfig({
   plugins: [vue()],
   build: {
-    outDir: 'docs',
+    outDir: '../devs_and_dragons',
     sourcemap: false
   },
+  base: '',
   server: {
     port: 8080
   }
