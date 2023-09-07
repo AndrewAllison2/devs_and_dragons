@@ -2,7 +2,7 @@
   <div class="container-fluid about-page bg-black">
     <div class="row justify-content-around ">
       <div class="col-12 pt-md-5 pb-3 mt-2 d-flex justify-content-center ">
-        <img class="hero-img img-fluid rounded-4" src="src\assets\img\DnD_Logo2-removebg-preview.png" alt="">
+        <img class="hero-img img-fluid rounded-4" :src="dndLogo" alt="">
       </div>
 
       <div class="col-12 text-center project-tools text-light  mx-3">
@@ -46,7 +46,8 @@
           <div class="mt-4">Andrew Allison</div>
           <div>
             <a class="mdi mdi-github mx-2 fs-2" title="To Andrew's Github" href="https://github.com/AndrewAllison2"></a>
-            <a class="mdi mdi-linkedin fs-2" title="To Andrew's LinkedIn" href="https://www.linkedin.com/in/andrew-allison-91a213288/"></a>
+            <a class="mdi mdi-linkedin fs-2" title="To Andrew's LinkedIn"
+              href="https://www.linkedin.com/in/andrew-allison-91a213288/"></a>
           </div>
         </div>
       </div>
@@ -62,13 +63,15 @@
           <div class="mt-4">Riley Thomas</div>
           <div>
             <a class="mdi mdi-github mx-2 fs-2" title="To Riley's Github" href="https://github.com/Rilezzz"></a>
-            <a class="mdi mdi-linkedin fs-2" title="To Riley's LinkedIn" href="https://www.linkedin.com/in/idahosuperiorcustoms/"></a>
+            <a class="mdi mdi-linkedin fs-2" title="To Riley's LinkedIn"
+              href="https://www.linkedin.com/in/idahosuperiorcustoms/"></a>
           </div>
         </div>
         <div class="col-12 col-md-5 card-name m-2 p-2 align-items-center">
           <div class="mt-4">Brandon Riggs</div>
           <div>
-            <a class="mdi mdi-github mx-2 fs-2" title="To Brandon's Github" href="https://github.com/BrandonRiggs-0104"></a>
+            <a class="mdi mdi-github mx-2 fs-2" title="To Brandon's Github"
+              href="https://github.com/BrandonRiggs-0104"></a>
             <a class="mdi mdi-linkedin fs-2" title="To Brandon's LinkedIn" href=""></a>
           </div>
         </div>
@@ -82,9 +85,13 @@
 </template>
 
 <script>
+import dndLogo from "../assets/img/DnD_logo2-removebg-preview.png"
+import { AppState } from "../AppState.js"
 export default {
   setup() {
-    return {}
+    return {
+      dndLogo
+    }
   }
 }
 </script>
