@@ -9,7 +9,7 @@ env:
   EC2_IP_ADDRESS: ${{ secrets.EC2_IP_ADDRESS }}
   EC2_USERNAME: ${{ secrets.EC2_USERNAME }}
   EC2_PEM_KEY: ${{ secrets.EC2_PEM_KEY }}
-  PROJECT_NAME: devs_and_dragons
+  PROJECT_NAME: "devs_and_dragons"
 
 jobs:
   deploy:
