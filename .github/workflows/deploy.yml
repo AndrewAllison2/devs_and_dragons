@@ -29,7 +29,7 @@ jobs:
       - name: Stop 🛑
         run: |
           sudo ssh -i ~/.ssh/id_rsa.pem -o StrictHostKeyChecking=no $EC2_USERNAME@$EC2_IP_ADDRESS '
-            sudo pm2 stop devs_and_dragons
+            pm2 stop $PROJECT_NAME
             '
             
       - name: Cleanup 🧹
@@ -50,5 +50,5 @@ jobs:
           # Example: 
           sudo ssh -i ~/.ssh/id_rsa.pem -o StrictHostKeyChecking=no $EC2_USERNAME@$EC2_IP_ADDRESS '
             cd $PROJECT_NAME && npm run build
-            sudo pm2 restart $PROJECT_NAME
+            pm2 restart $PROJECT_NAME
             '
