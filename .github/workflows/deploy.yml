@@ -29,9 +29,9 @@ jobs:
       - name: Cleanup 🧹
         run: |
           sudo ssh -i ~/.ssh/id_rsa.pem -o StrictHostKeyChecking=no $EC2_USERNAME@$EC2_IP_ADDRESS '
-            pm2 stop $PROJECT_NAME
-            sudo rm -rf $PROJECT_NAME &&
-            sudo mkdir -p $PROJECT_NAME/server &&
+            pm2 stop ~/$PROJECT_NAME
+            sudo rm -rf ~/$PROJECT_NAME &&
+            sudo mkdir -p ~/$PROJECT_NAME/server &&
             sudo echo "${{secrets.ENV}}" >> ~/$PROJECT_NAME/server/.env
             '
 
@@ -44,6 +44,6 @@ jobs:
           # Add any commands required to restart your application on the EC2 instance
           # Example: 
           sudo ssh -i ~/.ssh/id_rsa.pem -o StrictHostKeyChecking=no $EC2_USERNAME@$EC2_IP_ADDRESS '
-            cd $PROJECT_NAME && npm run build
+            cd ~/$PROJECT_NAME && npm run build
             pm2 restart $PROJECT_NAME
             '
