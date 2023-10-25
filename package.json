@@ -4,9 +4,9 @@
     "scripts": {
         "build": "npm run setup:server",
         "setup:app": "npm run setup:server && npm run setup:client",
-        "setup:client": "cd devs_and_dragons.client && npm i",
-        "setup:server": "cd devs_and_dragons && npm i",
-        "start": "node devs_and_dragons/index.js"
+        "setup:client": "cd client && npm i",
+        "setup:server": "cd server && npm i",
+        "start": "node server/index.js"
     },
     "dependencies": {
         "animate.css": "^4.1.1"
