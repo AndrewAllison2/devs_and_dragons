@@ -1,15 +1,6 @@
 
 {
-  "folders": [
-    {
-      "path": "devs_and_dragons.client",
-      "name": "client"
-    },
-    {
-      "path": "devs_and_dragons",
-      "name": "server"
-    }
-  ],
+  "folders": [],
   "settings": {
     "editor.suggestSelection": "first",
     "git.enableSmartCommit": true,
