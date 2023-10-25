@@ -26,11 +26,11 @@ jobs:
           echo "$EC2_PEM_KEY" > ~/.ssh/id_rsa.pem
           chmod 600 ~/.ssh/id_rsa.pem
       
-      - name: Stop 🛑
-        run: |
-          sudo ssh -i ~/.ssh/id_rsa.pem -o StrictHostKeyChecking=no $EC2_USERNAME@$EC2_IP_ADDRESS '
-            pm2 stop devs_and_dragons
-            '
+      # - name: Stop 🛑
+      #   run: |
+      #     sudo ssh -i ~/.ssh/id_rsa.pem -o StrictHostKeyChecking=no $EC2_USERNAME@$EC2_IP_ADDRESS '
+      #       pm2 stop devs_and_dragons
+      #       '
 
       - name: Cleanup 🧹
         run: |
