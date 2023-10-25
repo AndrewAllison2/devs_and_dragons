@@ -3,6 +3,7 @@
     <div class="row justify-content-around">
       <div class="col-11 col-md-3 mb-5">
         <div class="card m-2">
+          <h1>Deployment Change</h1>
           <img class="card-img-top " :src="account.picture" alt="profile">
           <div class="card-body text-white">
             <p class="card-text">{{ account.name }}</p>
@@ -134,13 +135,6 @@ export default {
       account: computed(() => AppState.account),
       myCampaigns: computed(() => AppState.myCampaigns),
       myEntities: computed(() => AppState.myEntities),
-
-
-
-
-
-
-
     }
   }
 }
