@@ -30,8 +30,8 @@ jobs:
         run: |
           sudo ssh -i ~/.ssh/id_rsa.pem -o StrictHostKeyChecking=no $EC2_USERNAME@$EC2_IP_ADDRESS '
             pm2 stop ~/devs_and_dragons
-            sudo rm -rf ~/devs_and_dragons &&
-            sudo mkdir -p ~/devs_and_dragons/server &&
+            rm -rf ~/devs_and_dragons &&
+            mkdir -p ~/devs_and_dragons/server &&
             sudo echo "${{secrets.ENV}}" >> ~/devs_and_dragons/server/.env
             '
 
