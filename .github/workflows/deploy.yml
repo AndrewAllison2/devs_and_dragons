@@ -29,10 +29,10 @@ jobs:
       - name: Cleanup 🧹
         run: |
           sudo ssh -i ~/.ssh/id_rsa.pem -o StrictHostKeyChecking=no $EC2_USERNAME@$EC2_IP_ADDRESS '
-            pm2 stop ~/devs_and_dragons
-            rm -rf ~/devs_and_dragons &&
-            mkdir -p ~/devs_and_dragons/server &&
-            sudo echo "${{secrets.ENV}}" >> ~/devs_and_dragons/server/.env
+            pm2 stop devs_and_dragons
+            rm -rf devs_and_dragons &&
+            mkdir -p devs_and_dragons/server &&
+            sudo echo "${{secrets.ENV}}" >> devs_and_dragons/server/.env
             '
 
       - name: Copy your code to the EC2📔
@@ -44,6 +44,6 @@ jobs:
           # Add any commands required to restart your application on the EC2 instance
           # Example: 
           sudo ssh -i ~/.ssh/id_rsa.pem -o StrictHostKeyChecking=no $EC2_USERNAME@$EC2_IP_ADDRESS '
-            cd ~/devs_and_dragons && npm run build
+            cd devs_and_dragons && npm run build
             pm2 restart devs_and_dragons
             '
