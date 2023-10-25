@@ -26,15 +26,10 @@ jobs:
           echo "$EC2_PEM_KEY" > ~/.ssh/id_rsa.pem
           chmod 600 ~/.ssh/id_rsa.pem
 
-      - name: Stop 🛑
-        run: |
-          sudo ssh -i ~/.ssh/id_rsa.pem -o StrictHostKeyChecking=no $EC2_USERNAME@$EC2_IP_ADDRESS '
-            pm2 stop devs_and_dragons
-            '
-            
       - name: Cleanup 🧹
         run: |
           sudo ssh -i ~/.ssh/id_rsa.pem -o StrictHostKeyChecking=no $EC2_USERNAME@$EC2_IP_ADDRESS '
+            sudo pm2 stop $PROJECT_NAME
             sudo rm -rf $PROJECT_NAME &&
             mkdir -p $PROJECT_NAME/$PROJECT_NAME &&
             echo "${{secrets.ENV}}" >> ~/$PROJECT_NAME/$PROJECT_NAME/.env
@@ -42,7 +37,7 @@ jobs:
 
       - name: Copy your code to the EC2📔
         run: |
-          sudo scp -i ~/.ssh/id_rsa.pem -o StrictHostKeyChecking=no -r $GITHUB_WORKSPACE $EC2_USERNAME@$EC2_IP_ADDRESS:~/
+          sudo scp -i ~/.ssh/id_rsa.pem -o StrictHostKeyChecking=no -r $GITHUB_WORKSPACE $EC2_USERNAME@$EC2_IP_ADDRESS:~/$PROJECT_NAME
 
       - name: Restart the EC2 🔃
         run: |
@@ -50,5 +45,5 @@ jobs:
           # Example: 
           sudo ssh -i ~/.ssh/id_rsa.pem -o StrictHostKeyChecking=no $EC2_USERNAME@$EC2_IP_ADDRESS '
             cd $PROJECT_NAME && npm run build
-            pm2 restart devs_and_dragons
+            sudo pm2 restart $PROJECT_NAME
             '
