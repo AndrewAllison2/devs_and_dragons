@@ -1,6 +1,19 @@
 
 {
-  "folders": [],
+  "folders": [
+    {
+      "name": "devs_and_dragons",
+      "path": "../../post-grad/devs_and_dragons/devs_and_dragons/devs_and_dragons"
+    },
+    {
+      "name": "client",
+      "path": "client"
+    },
+    {
+      "name": "server",
+      "path": "server"
+    }
+  ],
   "settings": {
     "editor.suggestSelection": "first",
     "git.enableSmartCommit": true,

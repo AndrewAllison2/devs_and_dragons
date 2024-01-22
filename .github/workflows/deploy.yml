@@ -1,59 +1,59 @@
-name: Deploy to EC2 ☁️
+# name: Deploy to EC2 ☁️
 
-on:
-  push:
-    branches:
-      - main
-env:
-  # Setting an environment variable with the value of a configuration variable
-  EC2_IP_ADDRESS: ${{ secrets.EC2_IP_ADDRESS }}
-  EC2_USERNAME: ${{ secrets.EC2_USERNAME }}
-  EC2_PEM_KEY: ${{ secrets.EC2_PEM_KEY }}
-  PROJECT_NAME: devs_and_dragons
+# on:
+#   push:
+#     branches:
+#       - main
+# env:
+#   # Setting an environment variable with the value of a configuration variable
+#   EC2_IP_ADDRESS: ${{ secrets.EC2_IP_ADDRESS }}
+#   EC2_USERNAME: ${{ secrets.EC2_USERNAME }}
+#   EC2_PEM_KEY: ${{ secrets.EC2_PEM_KEY }}
+#   PROJECT_NAME: devs_and_dragons
 
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
+# jobs:
+#   deploy:
+#     runs-on: ubuntu-latest
 
-    steps:
+#     steps:
 
-      - name: Checkout code
-        uses: actions/checkout@v3
+#       - name: Checkout code
+#         uses: actions/checkout@v3
 
-      - name: Create a file for your 🔑 on the action-machine
-        run: |
-          mkdir -p ~/.ssh
-          echo "$EC2_PEM_KEY" > ~/.ssh/id_rsa.pem
-          chmod 600 ~/.ssh/id_rsa.pem
+#       - name: Create a file for your 🔑 on the action-machine
+#         run: |
+#           mkdir -p ~/.ssh
+#           echo "$EC2_PEM_KEY" > ~/.ssh/id_rsa.pem
+#           chmod 600 ~/.ssh/id_rsa.pem
       
-      - name: Stop 🛑
-        run: |
-          sudo ssh -i ~/.ssh/id_rsa.pem -o StrictHostKeyChecking=no $EC2_USERNAME@$EC2_IP_ADDRESS '
-            pm2 stop devs_and_dragons
-            '
+#       - name: Stop 🛑
+#         run: |
+#           sudo ssh -i ~/.ssh/id_rsa.pem -o StrictHostKeyChecking=no $EC2_USERNAME@$EC2_IP_ADDRESS '
+#             pm2 stop devs_and_dragons
+#             '
 
-      - name: Cleanup 🧹
-        run: |
-          sudo ssh -i ~/.ssh/id_rsa.pem -o StrictHostKeyChecking=no $EC2_USERNAME@$EC2_IP_ADDRESS '
-            sudo rm -rf devs_and_dragons
-            '
+#       - name: Cleanup 🧹
+#         run: |
+#           sudo ssh -i ~/.ssh/id_rsa.pem -o StrictHostKeyChecking=no $EC2_USERNAME@$EC2_IP_ADDRESS '
+#             sudo rm -rf devs_and_dragons
+#             '
       
-      - name: Prepare ✳️
-        run: |
-          sudo ssh -i ~/.ssh/id_rsa.pem -o StrictHostKeyChecking=no $EC2_USERNAME@$EC2_IP_ADDRESS '
-            mkdir -p devs_and_dragons/server &&
-            echo "${{secrets.ENV}}" >> devs_and_dragons/server/.env
-            '
+#       - name: Prepare ✳️
+#         run: |
+#           sudo ssh -i ~/.ssh/id_rsa.pem -o StrictHostKeyChecking=no $EC2_USERNAME@$EC2_IP_ADDRESS '
+#             mkdir -p devs_and_dragons/server &&
+#             echo "${{secrets.ENV}}" >> devs_and_dragons/server/.env
+#             '
 
-      - name: Copy your code to the EC2📔
-        run: |
-          sudo scp -i ~/.ssh/id_rsa.pem -o StrictHostKeyChecking=no -r $GITHUB_WORKSPACE $EC2_USERNAME@$EC2_IP_ADDRESS:~/
+#       - name: Copy your code to the EC2📔
+#         run: |
+#           sudo scp -i ~/.ssh/id_rsa.pem -o StrictHostKeyChecking=no -r $GITHUB_WORKSPACE $EC2_USERNAME@$EC2_IP_ADDRESS:~/
 
-      - name: Restart the EC2 🔃
-        run: |
-          # Add any commands required to restart your application on the EC2 instance
-          # Example: 
-          sudo ssh -i ~/.ssh/id_rsa.pem -o StrictHostKeyChecking=no $EC2_USERNAME@$EC2_IP_ADDRESS '
-            cd devs_and_dragons && npm run build
-            pm2 restart devs_and_dragons
-            '
+#       - name: Restart the EC2 🔃
+#         run: |
+#           # Add any commands required to restart your application on the EC2 instance
+#           # Example: 
+#           sudo ssh -i ~/.ssh/id_rsa.pem -o StrictHostKeyChecking=no $EC2_USERNAME@$EC2_IP_ADDRESS '
+#             cd devs_and_dragons && npm run build
+#             pm2 restart devs_and_dragons
+#             '
