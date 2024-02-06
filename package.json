@@ -1,5 +1,6 @@
 {
     "name": "devs_and_dragons",
+    "homepage": "https://devs-and-dragons.onrender.com",
     "version": "1.0.0",
     "scripts": {
         "build": "npm run setup:server",
